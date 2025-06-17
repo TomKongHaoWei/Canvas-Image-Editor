@@ -183,6 +183,7 @@ function init() {
     // console.log(width, height);
     if (width) $('#canvasWidth').val(width);
     if (height) $('#canvasHeight').val(height);
+    updateCanvasSize();
 }
 
 window.onload = function() {
