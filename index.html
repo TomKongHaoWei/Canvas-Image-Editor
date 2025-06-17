@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>Canvas 图片拖动、缩放、导出和拖放导入</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="left-panel" class="flex">
+    <canvas id="myCanvas" width="400" height="300"></canvas>
+  </div>
+  <div id="right-panel">
+    <h2>画布设置</h2>
+    <div class="form-group">
+      <label for="canvasWidth">画布宽度：</label>
+      <input type="number" id="canvasWidth" value="400" min="100" max="2000">
+    </div>
+    <div class="form-group">
+      <label for="canvasHeight">画布高度：</label>
+      <input type="number" id="canvasHeight" value="400" min="100" max="2000">
+    </div>
+    <div class="form-group">
+      <label for="imageInput">选择图片：</label>
+      <input type="file" id="imageInput" accept="image/*">
+    </div>
+    <div class="form-group">
+      <button id="exportBtn">导出图片</button>
+    </div>
+  </div>
+  <script src="./jquery-3.5.1.min.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
