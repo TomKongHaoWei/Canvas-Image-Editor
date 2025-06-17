@@ -9,6 +9,27 @@ let offsetX = 0, offsetY = 0;
 let imageX = 50, imageY = 50;
 let scale = 1;
 
+function generateDateTimeWithRandom() {
+  // 获取当前日期时间
+  const now = new Date();
+  
+  // 格式化日期部分
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  
+  // 格式化时间部分
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  
+  // 生成4位随机数
+  const randomNum = String(Math.floor(Math.random() * 9000) + 1000);
+  
+  // 组合成最终字符串
+  return `${year}${month}${day}_${hours}${minutes}${seconds}_${randomNum}`;
+}
+
 function updateCanvasSize() {
     const width = parseInt($('#canvasWidth').val());
     const height = parseInt($('#canvasHeight').val());
@@ -149,7 +170,21 @@ $('#exportBtn').on('click', function () {
     }
 
     const link = document.createElement('a');
-    link.download = 'canvas-image.png';
+    link.download = `${generateDateTimeWithRandom()}.png`;
     link.href = canvas.toDataURL();
     link.click();
 });
+
+function init() {
+    // 获取当前URL的查询参数部分（即?后面的部分）
+    const urlParams = new URLSearchParams(window.location.search);
+    const width = urlParams.get('width');
+    const height = urlParams.get('height');
+    // console.log(width, height);
+    if (width) $('#canvasWidth').val(width);
+    if (height) $('#canvasHeight').val(height);
+}
+
+window.onload = function() {
+    init();
+};
