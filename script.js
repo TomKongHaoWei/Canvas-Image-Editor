@@ -170,7 +170,9 @@ $('#exportBtn').on('click', function () {
     }
 
     const link = document.createElement('a');
-    link.download = `${generateDateTimeWithRandom()}.png`;
+    const fileName = $('#fileName').val() || generateDateTimeWithRandom();
+
+    link.download = `${fileName}.png`;
     link.href = canvas.toDataURL();
     link.click();
 });
@@ -180,9 +182,11 @@ function init() {
     const urlParams = new URLSearchParams(window.location.search);
     const width = urlParams.get('width');
     const height = urlParams.get('height');
+    const fileName = urlParams.get('fileName');
     // console.log(width, height);
     if (width) $('#canvasWidth').val(width);
     if (height) $('#canvasHeight').val(height);
+    if (fileName) $('#fileName').val(fileName);
     updateCanvasSize();
 }
 
