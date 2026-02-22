@@ -118,7 +118,7 @@ canvas.addEventListener('wheel', function (e) {
     if (!img) return;
     e.preventDefault();
 
-    const zoomFactor = 0.1;
+    const zoomFactor = 0.01;
     const oldScale = scale;
 
     if (e.deltaY < 0) {
@@ -138,6 +138,17 @@ canvas.addEventListener('wheel', function (e) {
     imageX = mouseX - dx * (scale / oldScale);
     imageY = mouseY - dy * (scale / oldScale);
 
+    // $('#scaleValue').val(scale);
+    $('#scaleSpan').text(`图片缩放：${scale.toFixed(2)}`);
+
+    draw();
+});
+
+// 图片居中按钮点击事件
+$('#centerBtn').on('click', function () {
+    if (!img) return;
+    imageX = canvas.width / 2 - img.width * scale / 2;
+    imageY = canvas.height / 2 - img.height * scale / 2;
     draw();
 });
 
